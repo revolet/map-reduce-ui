@@ -1,31 +1,40 @@
-<p>This is the partial for mapreduce view.</p>
+<h2>Jobs</h2>
 
-Jobs
-
-<table>
+<table class="table table-hover">
     <tr>
         <td><b>ID</b></td>
         <td><b>Inputs</b></td>
         <td><b>Mapped</b></td>
         <td><b>Reduced</b></td>
         <td><b>Fetched</b></td>
+        <td><b>Expires</b></td>
     </tr>
-    <tbody ng-repeat="job in jobs">
-        <tr>
+    <tr ng-repeat="job in jobs">
         <td width="300px">{{job.id}}</td>
-        
-        <td width="100px">{{job.input_count}}</td>
-        <td width="100px">{{job.mapped_count}}</td>
-        <td width="100px">{{job.reduced_count}}</td>
-        <td width="100px">{{job.result_count}}</td>
-        </tr>
-        
-        <tr>
-            <td>Progress</td>
-            <td><div style="background: #00ff00; width: {{100*job.input_count/job.input_total}}px">&nbsp;</div></td>
-            <td><div style="background: #00ff00; width: {{100*job.mapped_count/job.input_total}}px">&nbsp;</div></td>
-            <td><div style="background: #00ff00; width: {{100*job.reduced_count/job.input_total}}px">&nbsp;</div></td>
-            <td><div style="background: #00ff00; width: {{100*job.result_count/job.input_total}}px">&nbsp;</div></td>
-        </tr>
-    <tbody>
+        <td width="100px">
+            {{job.input_count}} ({{job.input_percent}}%)
+            <div class="progress">
+                <div class="bar" style="width: {{job.input_percent}}%">&nbsp;</div>
+            </div>
+        </td>
+        <td width="100px">
+            {{job.mapped_count}} ({{job.mapped_percent}}%)
+            <div class="progress">
+                <div class="bar" style="width: {{job.mapped_percent}}%">&nbsp;</div>
+            </div>
+        </td>
+        <td width="100px">
+            {{job.reduced_count}} ({{job.reduced_percent}}%)
+            <div class="progress">
+                <div class="bar" style="width: {{job.reduced_percent}}%">&nbsp;</div>
+            </div>
+        </td>
+        <td width="100px">
+            {{job.result_count}} ({{job.result_percent}}%)
+            <div class="progress">
+                <div class="bar" style="width: {{job.result_percent}}%">&nbsp;</div>
+            </div>
+        </td>
+        <td>{{ job.expires < 0 ? ' ' : job.expires }}</td>
+    </tr>
 </table>

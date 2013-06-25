@@ -12,5 +12,7 @@ requires 'Mojolicious'    => 0;
 test_requires 'Test::Deep' => 0;
 test_requires 'Test::More' => 0;
 
+auto_install();
+
 WriteAll();
 
